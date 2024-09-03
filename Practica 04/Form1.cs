@@ -14,8 +14,8 @@ namespace Practica_04
 {
     public partial class Form1 : Form
     {
+//comentario de prueba
 
-        
         public Form1()
         {
             InitializeComponent();

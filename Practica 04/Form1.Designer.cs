@@ -104,6 +104,7 @@
             this.tbTel.Name = "tbTel";
             this.tbTel.Size = new System.Drawing.Size(190, 22);
             this.tbTel.TabIndex = 8;
+            this.tbTel.TextChanged += new System.EventHandler(this.tbTel_TextChanged);
             // 
             // TbApellido
             // 

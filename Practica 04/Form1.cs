@@ -28,7 +28,7 @@ namespace Practica_04
             TbApellido.TextChanged += validarApellido;
             
 
-        }
+        }   
 
         private void label1_Click(object sender, EventArgs e)
         {

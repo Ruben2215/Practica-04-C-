@@ -43,6 +43,7 @@
             this.TbEstatura = new System.Windows.Forms.TextBox();
             this.BnGuardar = new System.Windows.Forms.Button();
             this.Clear = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -86,48 +87,57 @@
             // TbNombre
             // 
             this.TbNombre.Location = new System.Drawing.Point(229, 28);
+            this.TbNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TbNombre.Multiline = true;
             this.TbNombre.Name = "TbNombre";
-            this.TbNombre.Size = new System.Drawing.Size(190, 22);
+            this.TbNombre.Size = new System.Drawing.Size(191, 22);
             this.TbNombre.TabIndex = 5;
             this.TbNombre.TextChanged += new System.EventHandler(this.TbNombre_TextChanged);
             // 
             // TbEdad
             // 
-            this.TbEdad.Location = new System.Drawing.Point(229, 184);
+            this.TbEdad.Location = new System.Drawing.Point(229, 185);
+            this.TbEdad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TbEdad.Name = "TbEdad";
-            this.TbEdad.Size = new System.Drawing.Size(190, 22);
+            this.TbEdad.Size = new System.Drawing.Size(191, 22);
             this.TbEdad.TabIndex = 7;
+            this.TbEdad.TextChanged += new System.EventHandler(this.TbEdad_TextChanged);
             // 
             // tbTel
             // 
             this.tbTel.Location = new System.Drawing.Point(229, 111);
+            this.tbTel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbTel.Name = "tbTel";
-            this.tbTel.Size = new System.Drawing.Size(190, 22);
+            this.tbTel.Size = new System.Drawing.Size(191, 22);
             this.tbTel.TabIndex = 8;
             this.tbTel.TextChanged += new System.EventHandler(this.tbTel_TextChanged);
             // 
             // TbApellido
             // 
             this.TbApellido.Location = new System.Drawing.Point(229, 64);
+            this.TbApellido.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TbApellido.Name = "TbApellido";
-            this.TbApellido.Size = new System.Drawing.Size(190, 22);
+            this.TbApellido.Size = new System.Drawing.Size(191, 22);
             this.TbApellido.TabIndex = 9;
             // 
             // rbhombre
             // 
             this.rbhombre.AutoSize = true;
             this.rbhombre.Location = new System.Drawing.Point(29, 254);
+            this.rbhombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbhombre.Name = "rbhombre";
             this.rbhombre.Size = new System.Drawing.Size(77, 20);
             this.rbhombre.TabIndex = 10;
             this.rbhombre.TabStop = true;
             this.rbhombre.Text = "Hombre";
             this.rbhombre.UseVisualStyleBackColor = true;
+            this.rbhombre.CheckedChanged += new System.EventHandler(this.rbhombre_CheckedChanged);
             // 
             // rbmujer
             // 
             this.rbmujer.AutoSize = true;
             this.rbmujer.Location = new System.Drawing.Point(139, 254);
+            this.rbmujer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbmujer.Name = "rbmujer";
             this.rbmujer.Size = new System.Drawing.Size(61, 20);
             this.rbmujer.TabIndex = 11;
@@ -138,7 +148,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 224);
+            this.label3.Location = new System.Drawing.Point(27, 224);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 16);
             this.label3.TabIndex = 12;
@@ -157,13 +167,15 @@
             // TbEstatura
             // 
             this.TbEstatura.Location = new System.Drawing.Point(229, 145);
+            this.TbEstatura.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TbEstatura.Name = "TbEstatura";
-            this.TbEstatura.Size = new System.Drawing.Size(190, 22);
+            this.TbEstatura.Size = new System.Drawing.Size(191, 22);
             this.TbEstatura.TabIndex = 14;
             // 
             // BnGuardar
             // 
-            this.BnGuardar.Location = new System.Drawing.Point(161, 317);
+            this.BnGuardar.Location = new System.Drawing.Point(161, 318);
+            this.BnGuardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BnGuardar.Name = "BnGuardar";
             this.BnGuardar.Size = new System.Drawing.Size(75, 23);
             this.BnGuardar.TabIndex = 15;
@@ -174,6 +186,7 @@
             // Clear
             // 
             this.Clear.Location = new System.Drawing.Point(303, 316);
+            this.Clear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Clear.Name = "Clear";
             this.Clear.Size = new System.Drawing.Size(75, 23);
             this.Clear.TabIndex = 16;
@@ -181,11 +194,23 @@
             this.Clear.UseVisualStyleBackColor = true;
             this.Clear.Click += new System.EventHandler(this.Clear_Click);
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(42, 318);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.TabIndex = 17;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 450);
+            this.ClientSize = new System.Drawing.Size(493, 450);
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.Clear);
             this.Controls.Add(this.BnGuardar);
             this.Controls.Add(this.TbEstatura);
@@ -201,8 +226,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Formulario";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -226,6 +252,7 @@
         private System.Windows.Forms.TextBox TbEstatura;
         private System.Windows.Forms.Button BnGuardar;
         private System.Windows.Forms.Button Clear;
+        private System.Windows.Forms.Button btnSalir;
     }
 }
 

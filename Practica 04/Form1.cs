@@ -10,14 +10,16 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
+using MySql.Data.MySqlClient;
+
 
 
 namespace Practica_04
 {
     public partial class Form1 : Form
     {
-        //comentario de prueba
-
+        string SqlConection = "Server=localhost; Port=3306; Database=Registros_Avanzada; Uid = root; Pwd=;";
+          
         public Form1()
         {
             InitializeComponent();
@@ -47,6 +49,7 @@ namespace Practica_04
 
         private void TbNombre_TextChanged(object sender, EventArgs e)
         {
+            
 
         }
 
@@ -73,9 +76,9 @@ namespace Practica_04
             {
                 string nombre = TbNombre.Text;
                 string apellidos = TbApellido.Text;
-                string edad = TbEdad.Text;
-                string Estatura = TbEstatura.Text;
-                string Telefono = tbTel.Text;
+                int edad = int.Parse(TbEdad.Text);
+                decimal estatura = decimal.Parse(TbEstatura.Text);
+                string telefono = tbTel.Text;
 
                 String Genero = "";
                 if (rbhombre.Checked)
@@ -86,7 +89,11 @@ namespace Practica_04
                 {
                     Genero = "Mujer";
                 }
-                String Datos = $"Nombre: {nombre}\r\nApellidos: {apellidos}\r\nEdad: {edad}\r\nTelefono: {Telefono}\r\nEstatura: {Estatura}\r\nGenero: {Genero}\r\n\r\n";
+                InsertarRegistro(nombre, apellidos, edad, estatura, telefono, Genero);
+
+
+                String Datos = $"Nombre: {nombre}\r\nApellidos: {apellidos}\r\nEdad: {edad}\r\nTelefono: " +
+                    $"{telefono}\r\nEstatura: {estatura}\r\nGenero: {Genero}\r\n\r\n";
 
 
                 string rutaArchivo = "C:\\Users\\Ruben Clemente\\Documents\\Practica 04\\Datos.txt";
@@ -99,7 +106,7 @@ namespace Practica_04
                         writer.WriteLine(Datos);
 
                     }
-                MessageBox.Show("Datos guardados\r\n\r\n" + Datos, "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Datos guardados en MySQL\r\n\r\n" + Datos, "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -108,8 +115,8 @@ namespace Practica_04
         }
 
         private bool EsEntero(string valor) {
-            int resultado;
-            return int.TryParse(valor, out resultado);
+            float resultado;
+            return float.TryParse(valor, out resultado);
 
         }
 
@@ -126,8 +133,6 @@ namespace Practica_04
 
         private bool EsTextoValido(string valor) {
             return Regex.IsMatch(valor, @"^[a-zA-Z\s]+$");
-            //El \n no funciona como se necesita, el \s valida tambien espacios
-
 
         }
 
@@ -138,7 +143,6 @@ namespace Practica_04
             {
                 MessageBox.Show("Ingresa una edad valida", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBox.Clear();
-
             }
         }
 
@@ -151,10 +155,7 @@ namespace Practica_04
                 textBox.Clear();
 
             }
-
         }
-
-       
         private void validarTelefono(object sender, EventArgs e) {
 
             TextBox textbox = (TextBox)sender;
@@ -172,7 +173,6 @@ namespace Practica_04
             {
                 textbox.BackColor = Color.Red;
             }
-
         }
 
         private void validarNombre(object sender, EventArgs e) {
@@ -215,6 +215,47 @@ namespace Practica_04
         private void tbTel_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void InsertarRegistro(string nombre, string apellido, int edad, decimal estatura, string telefono, string genero)
+        {
+            using (MySqlConnection conection = new MySqlConnection(SqlConection))
+            {
+                conection.Open();
+
+                string insertQuery = "INSERT INTO registros(Nombre, Apellido, Telefono, Estatura, Edad, Genero)" +
+                    "VALUES (@Nombre,@Apellido, @Telefono, @Estatura, @Edad, @Genero)";
+
+                using (MySqlCommand command = new MySqlCommand(insertQuery, conection))
+                {
+                    command.Parameters.AddWithValue("@Nombre", nombre);
+                    command.Parameters.AddWithValue("@Apellido", apellido);
+                    command.Parameters.AddWithValue("@Telefono", telefono);
+                    command.Parameters.AddWithValue("@Estatura", estatura);
+                    command.Parameters.AddWithValue("@Edad", edad);
+                    command.Parameters.AddWithValue("@Genero", genero);
+
+                    command.ExecuteNonQuery();
+
+                }
+                conection.Close();
+
+            }
+        }
+
+        private void TbEdad_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbhombre_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
